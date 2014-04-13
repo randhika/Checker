@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory android:title="設定">
+            <CheckBoxPreference
+                android:key="checkbox"
+                android:defaultValue="true"
+                android:title="通知を有効にする"
+                 />
+            <ListPreference 
+                android:key="Listsbox"
+                android:title="時刻"
+                android:entries="@array/list_entries"
+                android:entryValues="@array/list_entryvalues"
+             />
+        </PreferenceCategory>
+        <PreferenceCategory android:title="このアプリについて">
+            <Preference android:summary="このアプリは以下のライブラリを使用しています。\nSwipeListView \nhttps://github.com/47deg/android-swipelistview"/>
+        </PreferenceCategory>
+    </PreferenceScreen>
