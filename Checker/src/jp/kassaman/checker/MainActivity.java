@@ -1,9 +1,11 @@
 package jp.kassaman.checker;
 
 import jp.kassaman.checker.R;
-
+import jp.kassaman.checker.main.FragmentPagerAdapterImpl;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
@@ -18,73 +20,8 @@ import android.widget.FrameLayout;
 import android.widget.TabHost;
 
 public class MainActivity extends Activity {
-
-    private TabListener tabListener1 = new TabListener() {
-
-        @Override
-        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-            Fragment f = getFragmentManager().findFragmentByTag(Tab1Fragment.TAG);
-            ft.remove(f);
-
-        }
-
-        @Override
-        public void onTabSelected(Tab tab, FragmentTransaction ft) {
-
-            ft.add(R.id.fragment_container, new Tab1Fragment(), Tab1Fragment.TAG);
-        }
-
-        @Override
-        public void onTabReselected(Tab tab, FragmentTransaction ft) {
-            // TODO �����������ꂽ���\�b�h�E�X�^�u
-
-        }
-    };
-
-    private TabListener tabListener2 = new TabListener() {
-
-        @Override
-        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-            Fragment f = getFragmentManager().findFragmentByTag(Tab2Fragment.TAG);
-            ft.remove(f);
-
-        }
-
-        @Override
-        public void onTabSelected(Tab tab, FragmentTransaction ft) {
-
-            ft.add(R.id.fragment_container, new Tab2Fragment(), Tab2Fragment.TAG);
-
-        }
-
-        @Override
-        public void onTabReselected(Tab tab, FragmentTransaction ft) {
-            // TODO �����������ꂽ���\�b�h�E�X�^�u
-
-        }
-    };
-
-    private TabListener tabListener3 = new TabListener() {
-
-        @Override
-        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-            Fragment f = getFragmentManager().findFragmentByTag(Tab3Fragment.TAG);
-            ft.remove(f);
-        }
-
-        @Override
-        public void onTabSelected(Tab tab, FragmentTransaction ft) {
-            ft.add(R.id.fragment_container, new Tab3Fragment(), Tab3Fragment.TAG);
-
-        }
-
-        @Override
-        public void onTabReselected(Tab tab, FragmentTransaction ft) {
-            // TODO �����������ꂽ���\�b�h�E�X�^�u
-
-        }
-    };
+    
+    private ViewPager mViewPager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,17 +29,22 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mViewPager = (ViewPager) findViewById(R.id.fragment_container);
+        mViewPager.setAdapter(new FragmentPagerAdapterImpl(getFragmentManager()));
+        mViewPager.setOnPageChangeListener(new OnPageChangeListenerImpl());
+
         final ActionBar actionbar = getActionBar();
         actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        actionbar.addTab(actionbar.newTab().setText("3日以内").setTabListener(tabListener1));
-        actionbar.addTab(actionbar.newTab().setText("7日以内").setTabListener(tabListener2));
-        actionbar.addTab(actionbar.newTab().setText("日持ちのするもの").setTabListener(tabListener3));
+        actionbar.addTab(actionbar.newTab().setText("3日以内").setTabListener(new TabListenerImpl()));
+        actionbar.addTab(actionbar.newTab().setText("7日以内").setTabListener(new TabListenerImpl()));
+        actionbar.addTab(actionbar.newTab().setText("日持ちのするもの").setTabListener(new TabListenerImpl()));
 
         boolean on = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("checkbox", true);
         if (on) {
             startService(new Intent(this, TimerService.class));
         }
+        
     }
 
     @Override
@@ -142,4 +84,41 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * ViewPager（ページ）になにか起こった時に制御を書くクラス
+     */
+    private class OnPageChangeListenerImpl implements OnPageChangeListener {
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {}
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {}
+
+        @Override
+        public void onPageSelected(int arg0) {
+            // ページが切り替えられたとき、タブの表示を変える
+            getActionBar().setSelectedNavigationItem(arg0);
+        }
+        
+    }
+
+    /*
+     * タブに何か起こった時の制御を書くクラス
+     */
+    private class TabListenerImpl implements TabListener {
+
+        @Override
+        public void onTabReselected(Tab tab, FragmentTransaction ft) {}
+
+        @Override
+        public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            // タブが選択された時、ページを切り替えする
+            mViewPager.setCurrentItem(tab.getPosition());
+        }
+
+        @Override
+        public void onTabUnselected(Tab tab, FragmentTransaction ft) {}
+        
+    }
 }
