@@ -13,7 +13,8 @@ public class Data implements Serializable{
     private long id = System.currentTimeMillis();
     private String productname ;
     private int number;
-    private Calendar calDate;    
+    private Calendar calDate;   
+    private String bitMap;
     
     public String getProductname() {
         return productname;
@@ -68,5 +69,11 @@ public class Data implements Serializable{
         return differenceDays;
         
         
+    }
+    public String getBitMap() {
+        return bitMap;
+    }
+    public void setBitMap(String bitMap) {
+        this.bitMap = bitMap;
     }
 }

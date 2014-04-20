@@ -126,33 +126,36 @@ containing a value of this type.
     }
     public static final class id {
         public static final int LinearLayout1=0x7f050007;
-        public static final int action_add=0x7f050019;
-        public static final int action_register=0x7f05001b;
-        public static final int back=0x7f050017;
+        public static final int action_add=0x7f05001c;
+        public static final int action_register=0x7f05001e;
+        public static final int back=0x7f05001b;
         public static final int both=0x7f050001;
         public static final int checker=0x7f050010;
         public static final int choice=0x7f050006;
-        public static final int countText=0x7f050014;
+        public static final int countText=0x7f050015;
         public static final int dismiss=0x7f050005;
         public static final int fragment_container=0x7f050008;
-        public static final int front=0x7f050012;
+        public static final int front=0x7f050014;
+        public static final int imageView1=0x7f050019;
         public static final int left=0x7f050003;
-        public static final int limitText=0x7f050016;
-        public static final int listView1=0x7f050018;
+        public static final int limitText=0x7f050017;
+        public static final int listView1=0x7f05001a;
         public static final int minus=0x7f05000e;
         public static final int none=0x7f050000;
-        public static final int numText=0x7f050015;
+        public static final int numText=0x7f050016;
         public static final int number=0x7f05000c;
+        public static final int pic=0x7f050012;
         public static final int plus=0x7f05000d;
-        public static final int productTExt=0x7f050013;
+        public static final int productTExt=0x7f050018;
         public static final int productname=0x7f05000a;
         public static final int reveal=0x7f050004;
         public static final int right=0x7f050002;
         public static final int settei=0x7f050011;
-        public static final int setteing_timer=0x7f05001a;
+        public static final int setteing_timer=0x7f05001d;
         public static final int textView1=0x7f050009;
         public static final int textView2=0x7f05000b;
         public static final int textView3=0x7f05000f;
+        public static final int upImage=0x7f050013;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

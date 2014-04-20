@@ -1,16 +1,21 @@
 package jp.kassaman.checker;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
 import jp.kassaman.checker.R;
-
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DataAdapter extends ArrayAdapter<Data> {
@@ -47,6 +52,24 @@ public class DataAdapter extends ArrayAdapter<Data> {
         
         if(data.getLimit() == 0){
             cou.setText("今日までです。");
+        }
+  /*      if(data.getLimit() < 1){
+            cou.setText("期限切れです。");
+        } */
+        
+        if(data.getBitMap() != null){
+            
+            ImageView image = (ImageView) v.findViewById(R.id.imageView1);
+            
+            FileInputStream fis = null;
+            try {
+                fis = getContext().openFileInput(data.getBitMap());
+            } catch (FileNotFoundException e) {
+                // TODO 自動生成された catch ブロック
+                e.printStackTrace();
+            }
+            Bitmap bm = BitmapFactory.decodeStream(fis);
+            image.setImageBitmap(bm);
         }
        
         

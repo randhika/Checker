@@ -94,4 +94,21 @@
         android:layout_alignParentRight="true"
         android:text="設定する" />
 
+    <Button
+        android:id="@+id/pic"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/settei"
+        android:layout_below="@+id/settei"
+        android:layout_marginTop="15dp"
+        android:text="画像登録" />
+
+    <ImageView
+        android:id="@+id/upImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/checker"
+        android:layout_alignTop="@+id/pic"
+        android:src="@android:drawable/ic_menu_upload_you_tube" />
+
 </RelativeLayout>

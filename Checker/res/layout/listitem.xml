@@ -10,15 +10,6 @@
         android:padding="5dp" >
 
         <TextView
-            android:id="@+id/productTExt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="TextView"
-            android:textSize="30sp" />
-
-        <TextView
             android:id="@+id/countText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,28 +22,40 @@
             android:id="@+id/numText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/productTExt"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/productTExt"
+            android:layout_above="@+id/limitText"
+            android:layout_toLeftOf="@+id/countText"
             android:text="TextView"
             android:textColor="#a9a9a9" />
+
+        <TextView
+            android:id="@+id/productTExt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/countText"
+            android:layout_marginRight="14dp"
+            android:layout_toLeftOf="@+id/numText"
+            android:text="TextView"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/limitText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/productTExt"
             android:layout_below="@+id/productTExt"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="25dp"
             android:text="TextView"
             android:textColor="#4169e1" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_alignTop="@+id/productTExt"
+            android:src="@android:drawable/ic_menu_camera" />
+
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/back"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp" >
-    </RelativeLayout>
+    
 
 </FrameLayout>
