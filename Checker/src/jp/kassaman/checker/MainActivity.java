@@ -21,6 +21,7 @@ import android.widget.TabHost;
 
 public class MainActivity extends Activity {
     
+    //ViewPager:タブのページ
     private ViewPager mViewPager;
 
     @Override
@@ -54,10 +55,11 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    
+    //設定画面から戻ったら呼ばれる
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO �����������ꂽ���\�b�h�E�X�^�u
-        
+       
         if(requestCode == 200){
             boolean on = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("checkbox", true);
             if (on) {

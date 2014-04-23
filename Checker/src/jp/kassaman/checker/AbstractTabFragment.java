@@ -24,9 +24,9 @@ public abstract class AbstractTabFragment extends Fragment {
         public void onOpened(int position, boolean toRight) {
 
             // �t�@�C���ォ�����
-            Data delete = array.get(position);
+            Data listData = array.get(position);
             ArrayList<Data> del = (ArrayList<Data>) FIleSave.readObjectFromFile(getActivity(), FIleSave.produce);
-            del.remove(delete);
+            del.remove(listData);
 
             FIleSave.writeObjectToFile(getActivity(), del, FIleSave.produce);
 

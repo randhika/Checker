@@ -128,7 +128,7 @@ containing a value of this type.
         public static final int LinearLayout1=0x7f050007;
         public static final int action_add=0x7f05001c;
         public static final int action_register=0x7f05001e;
-        public static final int back=0x7f05001b;
+        public static final int back=0x7f05001a;
         public static final int both=0x7f050001;
         public static final int checker=0x7f050010;
         public static final int choice=0x7f050006;
@@ -139,7 +139,7 @@ containing a value of this type.
         public static final int imageView1=0x7f050019;
         public static final int left=0x7f050003;
         public static final int limitText=0x7f050017;
-        public static final int listView1=0x7f05001a;
+        public static final int listView1=0x7f05001b;
         public static final int minus=0x7f05000e;
         public static final int none=0x7f050000;
         public static final int numText=0x7f050016;
