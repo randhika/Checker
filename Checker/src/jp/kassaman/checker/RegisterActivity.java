@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 import jp.kassaman.checker.R;
@@ -77,7 +78,8 @@ public class RegisterActivity extends Activity implements OnClickListener,
         getMenuInflater().inflate(R.menu.register, menu);
         return true;
     }
-
+    
+    
     // �A�N�V�����o�[�����������ɌĂ΂�郁�\�b�h
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -134,6 +136,7 @@ public class RegisterActivity extends Activity implements OnClickListener,
 
                 }
                 array.add(data);
+               
 
                 FIleSave.writeObjectToFile(this, array, FIleSave.produce);
 
@@ -189,6 +192,7 @@ public class RegisterActivity extends Activity implements OnClickListener,
 
         TextView checker = (TextView) findViewById(R.id.checker);
         checker.setText(year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日");
+                
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, monthOfYear, dayOfMonth, 23, 59, 59);

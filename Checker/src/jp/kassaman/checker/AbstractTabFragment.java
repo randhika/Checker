@@ -1,8 +1,10 @@
 package jp.kassaman.checker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import jp.kassaman.checker.R;
+
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 import com.fortysevendeg.swipelistview.SwipeListViewListener;
@@ -52,6 +54,7 @@ public abstract class AbstractTabFragment extends Fragment {
     protected void setListView() {
         array = getList();
 
+        Collections.sort(array,new DataComparator());
         if (array == null) {
             array = new ArrayList<Data>();
         }
