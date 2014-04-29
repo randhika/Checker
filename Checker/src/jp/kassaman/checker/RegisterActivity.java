@@ -78,8 +78,7 @@ public class RegisterActivity extends Activity implements OnClickListener,
         getMenuInflater().inflate(R.menu.register, menu);
         return true;
     }
-    
-    
+
     // �A�N�V�����o�[�����������ɌĂ΂�郁�\�b�h
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -102,32 +101,38 @@ public class RegisterActivity extends Activity implements OnClickListener,
                 EditText num = (EditText) findViewById(R.id.number);
                 data.setNumber(Integer.parseInt(num.getText().toString()));
 
-                // 画像をファイルに保存
-                String file = data.getId() + ".jpg";
+                // 画像ファイル名を決定する
+               // String file = data.getId() + ".jpg";
 
                 /* Bitmapをファイルに記憶する　 */
 
-                // fileというファイル名でファイル保存機能を呼び出す
-                FileOutputStream fos = null;
-                try {
-                    fos = openFileOutput(file, MODE_PRIVATE);
-                } catch (FileNotFoundException e1) {
-                    // TODO 自動生成された catch ブロック
-                    e1.printStackTrace();
-                }
-                //saveImageをjpgでファイルに書き出す
+                if (saveImage != null) {
+                    /* 画像保存に関係する部分-始まり */
+                    FileOutputStream fos = null;
+                    String file = data.getId() + ".jpg";
+                    
+                    try {
+                        fos = openFileOutput(file, MODE_PRIVATE);
+                    } catch (FileNotFoundException e1) {
+                        // TODO 自動生成された catch ブロック
+                        e1.printStackTrace();
+                    }
+                    // saveImageをjpgでファイルに書き出す
+                    saveImage.compress(CompressFormat.JPEG, 100, fos);
+                    
+                    
+                    try {
+                        fos.close();
+                    } catch (IOException e) {
+                        // TODO 自動生成された catch ブロック
+                        e.printStackTrace();
+                    }
 
-                saveImage.compress(CompressFormat.JPEG, 100, fos);
-
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    // TODO 自動生成された catch ブロック
-                    e.printStackTrace();
+                   
+                    // 画像ファイル名を記憶
+                    data.setImageDataName(file);
+                    /* 画像保存に関係する部分-終わり */
                 }
-                
-                //画像ファイルを記憶
-                data.setBitMap(file);
 
                 ArrayList<Data> array = (ArrayList<Data>) FIleSave
                         .readObjectFromFile(this, FIleSave.produce);
@@ -136,7 +141,6 @@ public class RegisterActivity extends Activity implements OnClickListener,
 
                 }
                 array.add(data);
-               
 
                 FIleSave.writeObjectToFile(this, array, FIleSave.produce);
 
@@ -192,10 +196,10 @@ public class RegisterActivity extends Activity implements OnClickListener,
 
         TextView checker = (TextView) findViewById(R.id.checker);
         checker.setText(year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日");
-                
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, monthOfYear, dayOfMonth, 23, 59, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
         date = calendar;
 
     }
@@ -208,7 +212,7 @@ public class RegisterActivity extends Activity implements OnClickListener,
                 && resultCode == Activity.RESULT_OK) {
             //
             Bitmap capturedImage = (Bitmap) data.getExtras().get("data");
-            //ImageViewへのbitmapのセット
+            // ImageViewへのbitmapのセット
             PoImage.setImageBitmap(capturedImage);
             // リサイズ
             saveImage = Bitmap.createScaledBitmap(capturedImage, 100, 100,

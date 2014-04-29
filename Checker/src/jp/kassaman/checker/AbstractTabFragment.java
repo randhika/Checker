@@ -25,11 +25,20 @@ public abstract class AbstractTabFragment extends Fragment {
 
         public void onOpened(int position, boolean toRight) {
 
-            // �t�@�C���ォ�����
+            // 項目をスワイプしたら呼ばれる
+            
+            //listData:削除対象のデータ
             Data listData = array.get(position);
             ArrayList<Data> del = (ArrayList<Data>) FIleSave.readObjectFromFile(getActivity(), FIleSave.produce);
             del.remove(listData);
-
+            
+            //XXX.getImageDataName:画像ファイル名
+            if(listData.getImageDataName() != null){
+                
+            getActivity().deleteFile(listData.getImageDataName());
+            
+            }
+            
             FIleSave.writeObjectToFile(getActivity(), del, FIleSave.produce);
 
             // ��ʏォ�����
@@ -54,10 +63,12 @@ public abstract class AbstractTabFragment extends Fragment {
     protected void setListView() {
         array = getList();
 
-        Collections.sort(array,new DataComparator());
+        
         if (array == null) {
             array = new ArrayList<Data>();
         }
+        
+        Collections.sort(array,new DataComparator());
         SwipeListView list = (SwipeListView) getView().findViewById(R.id.listView1);
         list.setAdapter(new DataAdapter(getActivity(), R.layout.listitem, R.id.productTExt, array));
         list.setSwipeListViewListener(base);

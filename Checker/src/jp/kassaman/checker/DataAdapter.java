@@ -57,13 +57,14 @@ public class DataAdapter extends ArrayAdapter<Data> {
             cou.setText("期限切れです。");
         } 
         */
-        if(data.getBitMap() != null){
+        /*ListViewの中での話*/
+        if(data.getImageDataName() != null){
             
             ImageView image = (ImageView) v.findViewById(R.id.imageView1);
             
             FileInputStream fis = null;
             try {
-                fis = getContext().openFileInput(data.getBitMap());
+                fis = getContext().openFileInput(data.getImageDataName());
             } catch (FileNotFoundException e) {
                 // TODO 自動生成された catch ブロック
                 e.printStackTrace();
