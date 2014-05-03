@@ -6,7 +6,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import jp.kassaman.checker.R;
-
 import android.R.integer;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -15,6 +14,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
 
 public class TimerService extends Service {
 
@@ -23,15 +24,21 @@ public class TimerService extends Service {
 
         @Override
         public void run() {
-            String str = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Listsbox", "7");
+
+            Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT);
+            String str = PreferenceManager.getDefaultSharedPreferences(
+                    getApplicationContext()).getString("Listsbox", "7");
             int n;
             n = Integer.parseInt(str);
+
             Calendar cale = Calendar.getInstance();
             int hour = cale.get(Calendar.HOUR);
 
             if (n == hour) {
 
-                ArrayList<Data> array = (ArrayList<Data>) FIleSave.readObjectFromFile(getApplicationContext(), FIleSave.produce);
+                ArrayList<Data> array = (ArrayList<Data>) FIleSave
+                        .readObjectFromFile(getApplicationContext(),
+                                FIleSave.produce);
                 if (array == null) {
                     array = new ArrayList<Data>();
 
@@ -40,17 +47,24 @@ public class TimerService extends Service {
                 for (Data d : array) {
                     long limit = d.getLimit();
                     if (limit == 0L) {
-                        // Notification:通知
+
+                        /*--通知--*/
+                        // NofificationManagerの参照を取得
                         NotificationManager no = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                        Notification notifi = new Notification(R.drawable.ic_launcher, "����؂�̂��m�点", System.currentTimeMillis());
+                        Notification notifi = new Notification(
+                                R.drawable.ic_launcher, "期限切れです。",
+                                System.currentTimeMillis());
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        PendingIntent content = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+                        Intent intent = new Intent(getApplicationContext(),
+                                MainActivity.class);
+                        PendingIntent content = PendingIntent.getActivity(
+                                getApplicationContext(), 0, intent, 0);
 
-                        notifi.setLatestEventInfo(getApplicationContext(), "Checker", "����؂�̂��m�点", content);
-                        
+                        notifi.setLatestEventInfo(getApplicationContext(),
+                                "Checker", "この品物は今日までです。", content);
+
                         no.notify(R.string.app_name, notifi);
-                        
+
                         break;
                     }
 
@@ -63,7 +77,7 @@ public class TimerService extends Service {
 
     @Override
     public void onCreate() {
-        
+
         super.onCreate();
         timer = new Timer();
 
@@ -77,7 +91,7 @@ public class TimerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-       
+
         return null;
     }
 

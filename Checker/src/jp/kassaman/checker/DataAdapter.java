@@ -50,13 +50,13 @@ public class DataAdapter extends ArrayAdapter<Data> {
         TextView cou = (TextView) v.findViewById(R.id.countText);
         cou.setText("あと"+data.getLimit() + "日");
         
-     /*   if(data.getLimit() == 0){
-            cou.setText("今日までです。");
+       if(data.getLimit() == 0){
+            cou.setText("今日まで。");
         }
        if(data.getLimit() < 0){
-            cou.setText("期限切れです。");
+            cou.setText("期限切れ。");
         } 
-        */
+        
         /*ListViewの中での話*/
         if(data.getImageDataName() != null){
             
