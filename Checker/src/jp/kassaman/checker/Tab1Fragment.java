@@ -17,6 +17,7 @@ public class Tab1Fragment extends AbstractTabFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+       
         return inflater.inflate(R.layout.tab1layout, container, false);
     }
 
@@ -33,7 +34,7 @@ public class Tab1Fragment extends AbstractTabFragment {
         
         for (Data d : array) {
 
-            if (d.getLimit()  < 4) {
+            if ( d.getLimit() < 4) {
                 
                 shiwake.add(d);
 
@@ -44,6 +45,8 @@ public class Tab1Fragment extends AbstractTabFragment {
 
         return shiwake;
     }
+    
+    
 
     
 }

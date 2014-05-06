@@ -27,7 +27,7 @@ public class Tab3Fragment extends AbstractTabFragment {
         }
         ArrayList<Data> shiwake = new ArrayList<Data>();
         for(Data d:array){
-            if(d.getLimit()  >7){
+            if(d.getLimit()  > 7){
                 shiwake.add(d);
             }
         }

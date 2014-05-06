@@ -62,15 +62,22 @@ public class DataAdapter extends ArrayAdapter<Data> {
             
             ImageView image = (ImageView) v.findViewById(R.id.imageView1);
             
+            
+          //  FileInputStream:ファイルを読み込む機能があるクラス
+                //初期値設定
             FileInputStream fis = null;
             try {
                 fis = getContext().openFileInput(data.getImageDataName());
+                
+                Bitmap bm = BitmapFactory.decodeStream(fis);
+                image.setImageBitmap(bm);
+                image.setImageResource(android.R.drawable.ic_menu_camera);
+                
             } catch (FileNotFoundException e) {
                 // TODO 自動生成された catch ブロック
                 e.printStackTrace();
             }
-            Bitmap bm = BitmapFactory.decodeStream(fis);
-            image.setImageBitmap(bm);
+           
         }
        
         

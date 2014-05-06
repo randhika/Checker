@@ -37,9 +37,11 @@ public class MainActivity extends Activity {
         final ActionBar actionbar = getActionBar();
         actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        actionbar.addTab(actionbar.newTab().setText("3日以内").setTabListener(new TabListenerImpl()));
-        actionbar.addTab(actionbar.newTab().setText("7日以内").setTabListener(new TabListenerImpl()));
-        actionbar.addTab(actionbar.newTab().setText("日持ちのするもの").setTabListener(new TabListenerImpl()));
+        
+        //actionbar.addTab(actionbar.newTab().setText("期限切れ").setTabListener(new TabListenerImpl()).setCustomView(R.layout.tabwidget00));
+        actionbar.addTab(actionbar.newTab().setText("3日以内").setTabListener(new TabListenerImpl()).setCustomView(R.layout.tabwidget01));
+        actionbar.addTab(actionbar.newTab().setText("7日以内").setTabListener(new TabListenerImpl()).setCustomView(R.layout.tabwidget02));
+        actionbar.addTab(actionbar.newTab().setText("日持ちのするもの").setTabListener(new TabListenerImpl()).setCustomView(R.layout.tabwidget03));
 
         boolean on = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("checkbox", true);
         if (on) {

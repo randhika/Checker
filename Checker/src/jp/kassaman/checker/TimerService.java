@@ -25,14 +25,14 @@ public class TimerService extends Service {
         @Override
         public void run() {
 
-            Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT);
+          
             String str = PreferenceManager.getDefaultSharedPreferences(
                     getApplicationContext()).getString("Listsbox", "7");
             int n;
             n = Integer.parseInt(str);
 
             Calendar cale = Calendar.getInstance();
-            int hour = cale.get(Calendar.HOUR);
+            int hour = cale.get(Calendar.HOUR_OF_DAY);
 
             if (n == hour) {
 
@@ -51,6 +51,7 @@ public class TimerService extends Service {
                         /*--通知--*/
                         // NofificationManagerの参照を取得
                         NotificationManager no = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                        //一瞬出てくる文字
                         Notification notifi = new Notification(
                                 R.drawable.ic_launcher, "期限切れです。",
                                 System.currentTimeMillis());
@@ -61,7 +62,7 @@ public class TimerService extends Service {
                                 getApplicationContext(), 0, intent, 0);
 
                         notifi.setLatestEventInfo(getApplicationContext(),
-                                "Checker", "この品物は今日までです。", content);
+                                "Checker",d.getProductname() + "の期限が今日までです。", content);
 
                         no.notify(R.string.app_name, notifi);
 

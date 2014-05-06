@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    >
-
-     <com.fortysevendeg.swipelistview.SwipeListView
+    android:orientation="vertical" >
+    
+    <com.fortysevendeg.swipelistview.SwipeListView
         xmlns:swipe="http://schemas.android.com/apk/res-auto"
         android:id="@+id/listView1"
         swipe:swipeBackView="@+id/back"
@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         swipe:swipeMode="both"
         android:layout_alignParentLeft="true"
-                >
-        
-          </com.fortysevendeg.swipelistview.SwipeListView>
+         >
 
-</LinearLayout>
+    </com.fortysevendeg.swipelistview.SwipeListView>
+
+</RelativeLayout>
